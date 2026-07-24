@@ -13,7 +13,7 @@ const createWindow = () => {
       preload: path.join(__dirname, "./preload/preload.js"),
     },
     roundedCorners: true,
-    // autoHideMenuBar:true,
+    autoHideMenuBar:true,
     maximizable: false,
   });
 
