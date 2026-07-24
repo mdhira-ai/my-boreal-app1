@@ -1,6 +1,6 @@
 {
   "name": "my-boreal-app1",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "this is test app",
   "main": "main.js",
   "scripts": {

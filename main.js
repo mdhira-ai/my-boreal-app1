@@ -54,6 +54,3 @@ autoUpdater.on('update-downloaded', () => {
 ipcMain.handle("app:get-version", () => {
   return app.getVersion();
 });
-ipcMain.handle("app:get-version", () => {
-  return app.getVersion();
-});
