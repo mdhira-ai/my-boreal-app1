@@ -1,20 +1,18 @@
 let mytodoinput = document.getElementById("mytodo");
 let mylist = document.getElementById("mylist");
 // Get the element that displays the version
-const versionTextEl = document.getElementById("vesiontext") || document.getElementById("versionText")
+const versionTextEl =
+  document.getElementById("vesiontext") ||
+  document.getElementById("versionText");
 
 // Fetch and display the app version from the preload API
-window.versions.getVersion().then(ver => {
+window.versions.getVersion().then((ver) => {
   if (versionTextEl) {
     versionTextEl.innerText = `v ${ver}`;
   }
 });
 
-
-
 let todo = [];
-
-
 
 document.getElementById("addtodoButton").addEventListener("click", addtodo);
 
@@ -36,5 +34,3 @@ function renderTodos() {
 }
 
 renderTodos();
-
-

@@ -4,31 +4,50 @@
   "description": "this is test app",
   "main": "main.js",
   "scripts": {
-    "start": "electron-forge start",
     "dev": "electron .",
     "watch:css": "npx @tailwindcss/cli -i ./style.css -o ./output.css --watch",
-    "package": "electron-forge package",
-    "make": "electron-forge make"
+    "build": "electron-builder --win",
+    "publish": "electron-builder --win --publish always"
+  },
+  "repository": {
+    "url": "https://github.com/mdhira-ai/my-boreal-app1"
+  },
+  "build": {
+    
+    "appId": "com.mdhira.myborealapp1",
+    "productName": "my-boreal-app1",
+    "files": [
+      "**/*",
+      "!node_modules/.cache"
+    ],
+    
+    "win": {
+      "target": "nsis"
+      
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "mdhira-ai",
+      "repo": "my-boreal-app1"
+    }
   },
   "keywords": [],
   "author": "md habibor rahman",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "@electron-forge/cli": "^7.11.2",
-    "@electron-forge/maker-deb": "^7.11.2",
-    "@electron-forge/maker-rpm": "^7.11.2",
-    "@electron-forge/maker-squirrel": "^7.11.2",
-    "@electron-forge/maker-zip": "^7.11.2",
-    "@electron-forge/plugin-auto-unpack-natives": "^7.11.2",
-    "@electron-forge/plugin-fuses": "^7.11.2",
-    "@electron/fuses": "^1.8.0",
-    "electron": "^43.2.0"
+    "electron": "^43.2.0",
+    "electron-builder": "^26.15.3"
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.3.3",
-    "electron-squirrel-startup": "^1.0.1",
-    "tailwindcss": "^4.3.3",
-    "update-electron-app": "^3.3.0"
+    "electron-updater": "^6.8.9",
+    "tailwindcss": "^4.3.3"
   }
 }
