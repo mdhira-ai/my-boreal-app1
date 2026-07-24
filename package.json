@@ -1,6 +1,6 @@
 {
   "name": "my-boreal-app1",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "this is test app",
   "main": "main.js",
   "scripts": {
@@ -13,17 +13,14 @@
     "url": "https://github.com/mdhira-ai/my-boreal-app1"
   },
   "build": {
-    
     "appId": "com.mdhira.myborealapp1",
     "productName": "my-boreal-app1",
     "files": [
       "**/*",
       "!node_modules/.cache"
     ],
-    
     "win": {
       "target": "nsis"
-      
     },
     "nsis": {
       "oneClick": false,
@@ -34,7 +31,8 @@
     "publish": {
       "provider": "github",
       "owner": "mdhira-ai",
-      "repo": "my-boreal-app1"
+      "repo": "my-boreal-app1",
+      "releaseType": "release"
     }
   },
   "keywords": [],
@@ -47,6 +45,7 @@
   },
   "dependencies": {
     "@tailwindcss/cli": "^4.3.3",
+    "electron-log": "^5.4.4",
     "electron-updater": "^6.8.9",
     "tailwindcss": "^4.3.3"
   }
