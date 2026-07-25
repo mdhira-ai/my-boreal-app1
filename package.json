@@ -32,8 +32,7 @@
     "publish": {
       "provider": "github",
       "owner": "mdhira-ai",
-      "repo": "my-boreal-app1",
-      "releaseType": "release"
+      "repo": "my-boreal-app1"
     }
   },
   "keywords": [],
