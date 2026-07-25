@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain, dialog } = require("electron");
 const path = require("node:path");
 const { autoUpdater } = require('electron-updater');
 const log = require('electron-log');
@@ -6,9 +6,10 @@ const log = require('electron-log');
 // --- Add logging so you can actually see what's happening ---
 log.transports.file.level = 'info';
 autoUpdater.logger = log;
+let win;
 
 const createWindow = () => {
-  const win = new BrowserWindow({
+  win = new BrowserWindow({
     icon: path.join(__dirname, 'favicon.ico'),
     width: 500,
     height: 400,
@@ -35,8 +36,15 @@ app.whenReady().then(() => {
 autoUpdater.on('checking-for-update', () => {
   log.info('Checking for update...');
 });
-autoUpdater.on('update-available', (info) => {
+autoUpdater.on('update-available', async(info) => {
   log.info('Update available:', info.version);
+  await dialog.showMessageBox(win, {
+    type: 'info',
+    title: 'Update available',
+    message: String(`Update available: ${info.version} 
+      \n please restart the app`),
+    buttons: ['OK']
+  });
 });
 autoUpdater.on('update-not-available', () => {
   log.info('No update available (already on latest version)');
@@ -53,4 +61,20 @@ autoUpdater.on('update-downloaded', () => {
 
 ipcMain.handle("app:get-version", () => {
   return app.getVersion();
+});
+
+
+
+// for alert
+ipcMain.handle('show-alert', async (event, message) => {
+  // const webContents = event.sender;
+  // const win = BrowserWindow.fromWebContents(webContents);
+
+  // Attaching 'win' makes it a modal sheet and safely handles focus
+  await dialog.showMessageBox(win, {
+    type: 'info',
+    title: 'Alert',
+    message: String(message),
+    buttons: ['OK']
+  });
 });

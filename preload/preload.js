@@ -9,3 +9,8 @@ contextBridge.exposeInMainWorld("versions", {
 
   ping: () => ipcRenderer.invoke("ping"),
 });
+
+
+contextBridge.exposeInMainWorld('electronAPI', {
+  showAlert: (message) => ipcRenderer.invoke('show-alert', message)
+});

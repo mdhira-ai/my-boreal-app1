@@ -1,4 +1,3 @@
-let mytodoinput = document.getElementById("mytodo");
 let mylist = document.getElementById("mylist");
 // Get the element that displays the version
 const versionTextEl =
@@ -15,12 +14,23 @@ window.versions.getVersion().then((ver) => {
 let todo = [];
 
 document.getElementById("addtodoButton").addEventListener("click", addtodo);
+let mytodoinput = document.getElementById("mytodo");
 
-function addtodo() {
+async function addtodo() {
   // save the todo in todo array list
-  todo.push(mytodoinput.value.trim());
-  mytodoinput.value = "";
-  renderTodos();
+  let mytodoinput_value = mytodoinput.value.trim()
+  if (!mytodoinput_value) {
+    await window.electronAPI.showAlert("please add todo");
+
+  }
+  else{
+    
+    todo.push(mytodoinput_value);
+    mytodoinput.value = "";
+    renderTodos();
+  }
+
+
 }
 
 function renderTodos() {
